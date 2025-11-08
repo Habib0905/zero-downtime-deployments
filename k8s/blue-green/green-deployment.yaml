@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name : mywebapp-green
+  namespace: bluegreen-demo
+  labels:
+    app: mywebapp
+    version: green
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mywebapp
+      version: green
+  template:
+    metadata:
+      labels:
+        app: mywebapp
+        version: green
+    spec:
+      containers:
+        - name: mywebapp
+          image: habib0905/mywebapp:v2
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_VERSION
+              value: "v2"
+
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 5
