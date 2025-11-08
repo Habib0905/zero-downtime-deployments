@@ -20,7 +20,7 @@ spec:
           image: habib0905/mywebapp:v1
           env:
             - name: APP_VERSION
-              value: "v1"
+              value: "latest"
           readinessProbe:
             httpGet:
               path: /healthz
