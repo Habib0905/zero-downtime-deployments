@@ -6,7 +6,7 @@ VERSION = os.environ.get("APP_VERSION", "v1")
 
 @app.route("/")
 def index():
-    return f"Hello from demo-app — Version: {VERSION}\n"
+    return f"Hello from web app — Version: {VERSION}\n"
 
 @app.route("/healthz")
 def health():
